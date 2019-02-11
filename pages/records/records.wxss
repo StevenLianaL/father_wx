@@ -1,0 +1,28 @@
+@import "../../utils/weui.wxss";
+/* table */
+view{
+  font-size: 24rpx;
+}
+.table{
+  width: 98%;
+}
+.tr{
+  width: 100%;
+  text-align: center;
+  border: 1rpx ridge;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td {
+  padding: 10rpx;
+  text-align: center;
+  width: 100%;
+
+}
+.th{
+  margin: 1.5rpx;
+  font-size: 28rpx;
+}
+.td{
+  margin: 10rpx 2rpx;
+}

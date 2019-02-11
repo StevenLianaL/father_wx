@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/records/records",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "牙记",
+    "navigationBarTextStyle": "black"
+  }
+}

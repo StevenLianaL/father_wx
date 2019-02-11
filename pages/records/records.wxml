@@ -1,0 +1,17 @@
+<view class='container'>
+  <view class='table'>
+    <view class='tr'>
+      <view class='th' wx:for="{{titles}}" wx:key="index">{{item}}</view>
+    </view>
+    <view class='tr content' wx:for="{{records}}"
+          wx:key="id" bindtap='goDetail' data-rid="{{item.id}}">
+      <view class='td'>{{item.work_time}}</view>
+      <view class='td'>{{item.patient}}</view>
+      <view class='td'>{{item.phone}}</view>
+      <view class='td'>{{item.tooth}}</view>
+      <view class='td'>{{item.position}}</view>
+      <view class='td'>{{item.price}}</view>
+      <view class='td'>{{item.other_price}}</view>
+    </view>
+  </view>
+</view>
