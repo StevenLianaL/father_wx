@@ -1,18 +1,28 @@
-input{
+input {
   border: 1rpx ridge;
   width: auto;
   text-align: center;
 }
-picker{
+
+picker {
   border: 1rpx ridge;
 }
-#change{
+
+/* #change{
   float: left;
 }
 #delete{
   float: right;
+} */
+
+.buttons {
+  flex-direction: row;
+  justify-content: space-between;
+  margin:0rpx;
+  border: 0rpx;
 }
-label{
+
+label {
   width: 100%;
-  background: #2CAE1E;
+  background: #2cae1e;
 }

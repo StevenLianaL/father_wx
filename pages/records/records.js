@@ -5,38 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    records:[],
+    records: [],
     titles: ["日期", "姓名", "电话", "牙类", "牙位", "收费", "加工费"],
     domain: getApp().globalData.domain,
-    all_prices:'',
-    other_prices:'',
-    profit:'',
-    isShowSelect:false,
-    select:{
+    all_prices: '',
+    other_prices: '',
+    profit: '',
+    isShowSelect: false,
+    select: {
       date: util.formatDate(new Date()),
-      level:'',
-      patient:'',
-      tempDate:''
+      level: '',
+      patient: '',
+      tempDate: ''
     },
-    levels:[
-      {value:'year',show:'年'},
-      {value:'month',show:'月'},
-      {value:'day',show:'日'}
-      ]
+    levels: [{
+        value: 'year',
+        show: '年'
+      },
+      {
+        value: 'month',
+        show: '月'
+      },
+      {
+        value: 'day',
+        show: '日'
+      }
+    ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let that=this
+  onLoad: function(options) {
+    let that = this
+    // user=getApp().globalData.userInfo.NickName
     wx.request({
-      url: this.data.domain+'/records/',
-      success:function(res){
-         that.setData({records:res.data.records})
-         that.setData({all_prices:res.data.all_prices})
-         that.setData({other_prices:res.data.other_prices})
-         that.setData({profit:res.data.profit})
+      url: this.data.domain + '/records/',
+      success: function(res) {
+        that.setData({
+          records: res.data.records
+        })
+        that.setData({
+          all_prices: res.data.all_prices
+        })
+        that.setData({
+          other_prices: res.data.other_prices
+        })
+        that.setData({
+          profit: res.data.profit
+        })
       }
     })
   },
@@ -44,112 +61,129 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  goDetail: function (params) {
+  goDetail: function(params) {
     const recordId = params.currentTarget.dataset.rid
     wx.navigateTo({
       url: '../detail/detail?rId=' + recordId,
     })
   },
-  addRecord:function(res){
+  addRecord: function(res) {
     wx.navigateTo({
       url: '../add/add',
     })
   },
-  showSelect:function(param){
-    var that=this
-    let isShow=this.data.isShowSelect
-    if(isShow){
-      if (this.data.select.level==='year'){
-        this.data.select.tempDate=this.data.select.date.substring(0,4)
-      }
-      else if (this.data.select.level==='month'){
-        this.data.select.tempDate = this.data.select.date.substring(0,7) 
-      }
-      else if (this.data.select.level==='day'){
+  showSelect: function(param) {
+    var that = this
+    let isShow = this.data.isShowSelect
+    if (isShow) {
+      // time level
+      if (this.data.select.level === 'year') {
+        this.data.select.tempDate = this.data.select.date.substring(0, 4)
+      } else if (this.data.select.level === 'month') {
+        this.data.select.tempDate = this.data.select.date.substring(0, 7)
+      } else if (this.data.select.level === 'day') {
         this.data.select.tempDate = this.data.select.date
-      }
-      else{
-        this.data.select.tempDate=''
+      } else {
+        this.data.select.tempDate = ''
       }
       const date = this.data.select.tempDate
       const patient = this.data.select.patient
-      if(date!==''& patient!==''){
-        var query="?date="+date+'&patient='+patient
-      }
-      else if(patient!==''){
-        var query="?patient="+patient
-      }
-      else if (date!==''){
-        var query='?date='+date
-      }
-      else{
-        var query=''
+      const username = getApp().globalData.userInfo.nickName
+      if (date !== '' & patient !== '') {
+        var query = "?date=" + date + '&patient=' + patient + '&username=' + username
+      } else if (patient !== '') {
+        var query = "?patient=" + patient + '&username=' + username
+      } else if (date !== '') {
+        var query = '?date=' + date + '&username=' + username
+      } else {
+        var query = ''
       }
       wx.request({
-        url: that.data.domain+'/records/'+query,
-        success:function(res){
-          that.setData({ records: res.data.records })
-          that.setData({ all_prices: res.data.all_prices })
-          that.setData({ other_prices: res.data.other_prices })
-          that.setData({ profit: res.data.profit })
+        url: that.data.domain + '/records/' + query,
+        success: function(res) {
+          if (res.data.records.length === 0) {
+            console.log()
+          } else {
+            that.setData({
+              records: res.data.records
+            })
+            that.setData({
+              all_prices: res.data.all_prices
+            })
+            that.setData({
+              other_prices: res.data.other_prices
+            })
+            that.setData({
+              profit: res.data.profit
+            })
+          }
+
         }
       })
 
     }
-    this.setData({ isShowSelect: !isShow })
+    this.setData({
+      select: {
+        date: '',
+        level: '',
+        patient: '',
+        tempDate: ''
+      },
+      isShowSelect: !isShow
+    })
   },
-  setPatient:function(param){
-    this.data.select.patient=param.detail.value
+  setPatient: function(param) {
+    this.data.select.patient = param.detail.value
   },
-  setLevel:function(param){
-    this.data.select.level=param.detail.value
+  setLevel: function(param) {
+    this.data.select.level = param.detail.value
   },
-  setSelectDate:function(param){
+  setSelectDate: function(param) {
     this.data.select.date = param.detail.value
   }
 })

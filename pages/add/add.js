@@ -75,23 +75,33 @@ Page({
   addRecord:function(param){
     const that = this
     const record = param.detail.value
-    console.log(record, 'pa')
+    record.username = getApp().globalData.userInfo.nickName
     wx.request({
       url: that.data.domain + '/records/',
       method: "POST",
       data: record,
       success: function (res) {
-        console.log(res.data.statusCode)
-        if(res.statusCode===404){
-          wx.showModal({
-            title: '错误',
-            content: '数据不完整，请填写完整的数据',
-            showCancel:false,
-            confirmText:'知道了'
-          })
+        if(res.statusCode===400){
+          const error=res.data.error
+          console.log(error)
+          if(error==='data_untotal'){
+            wx.showModal({
+              title: '错误',
+              content: '数据不完整，请填写完整的数据',
+              showCancel: false,
+              confirmText: '知道了'
+            })
+          }
+          else if(error=='no_user'){
+            wx.showModal({
+              title: '错误',
+              content: '查无此人，请联系开发者要求账号。',
+              showCancel: false,
+              confirmText: '知道了'
+            })
+          }
         }
         else{
-          console.log('success',res)
           wx.redirectTo({
             url: '../records/records'
           })

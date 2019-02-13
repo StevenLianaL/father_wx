@@ -2,40 +2,38 @@
   <form bindsubmit='updateRecord'>
     <view class='section'>
       <label for='work_time'>治疗时间：</label>
-      <picker id='work_time'
-        mode="date" 
-        start="2018-01-01" 
-        end="2025-12-31"
-        name='work_time'
-        value="{{record.work_time}}">{{record.work_time}}
+      <picker id='work_time' mode="date" start="2018-01-01" end="2025-12-31" name='work_time' value="{{record.work_time}}">{{record.work_time}}
       </picker>
       <view class="input0">
         <label for='patient'>患者姓名：</label>
-        <input type='text' id="patient"  placeholder='点击输入患者姓名'  name='patient' value="{{record.patient}}"/>
+        <input type='text' id="patient" placeholder='点击输入患者姓名' name='patient' value="{{record.patient}}" />
       </view>
       <view class="input0">
         <label for="phone">联系方式：</label>
-        <input type='number' id='phone' placeholder='点击输入联系方式' name="phone" value="{{record.phone}}"/>
+        <input type='number' id='phone' placeholder='点击输入联系方式' name="phone" value="{{record.phone}}" />
       </view>
       <view class="input0">
         <label for="tooth">牙（类型）：</label>
-        <input type='text' id='tooth' placeholder='点击输入牙（类型）' name="tooth" value="{{record.tooth}}"/>
+        <input type='text' id='tooth' placeholder='点击输入牙（类型）' name="tooth" value="{{record.tooth}}" />
       </view>
       <view class="input0">
         <label for="position">牙位：</label>
-        <input type='text' id='position' placeholder='点击输入牙位' name="position" value="{{record.position}}"/>
+        <input type='text' id='position' placeholder='点击输入牙位' name="position" value="{{record.position}}" />
       </view>
       <view class="input0">
         <label for="price">收费：</label>
-        <input type='digit' id='price' placeholder='点击输入收费' name="price" value="{{record.price}}"/>
+        <input type='digit' id='price' placeholder='点击输入收费' name="price" value="{{record.price}}" />
       </view>
       <view class="input0">
         <label for="other_price">加工费：</label>
-        <input type='digit' id='other_price' placeholder='点击输入加工费' name="other_price" value="{{record.other_price}}"/>
+        <input type='digit' id='other_price' placeholder='点击输入加工费' name="other_price" value="{{record.other_price}}" />
       </view>
     </view>
-    <button size='mini' id='change' type='primary' form-type='submit'>修改</button>  
-    <button size='mini' id='delete' type='warn' bindtap='deleteRecord'>删除</button>
+    <view class='buttons container' >
+      <button size='mini' type='primary' bindtap='callPhone'>电话</button>
+      <button size='mini' id='change' type='primary' form-type='submit'>修改</button>
+      <button size='mini' id='delete' type='warn' bindtap='deleteRecord'>删除</button>
+    </view>
   </form>
 
 </view>
