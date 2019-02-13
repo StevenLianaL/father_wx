@@ -22,7 +22,19 @@ view{
 .th{
   margin: 1.5rpx;
   font-size: 28rpx;
+  background: #2CAE1E;
 }
 .td{
   margin: 10rpx 2rpx;
+  background: #00E278;
+}
+.select{
+  float: right;
+}
+.choices{
+  float: left;
+}
+.no{
+  font-size: 40rpx;
+  text-align: center;
 }

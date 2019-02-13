@@ -1,5 +1,5 @@
 <view class='container'>
-  <form bindsubmit='updateRecord'>
+  <form bindsubmit='addRecord'>
     <view class='section'>
       <label for='work_time'>治疗时间：</label>
       <picker id='work_time'
@@ -34,8 +34,7 @@
         <input type='digit' id='other_price' placeholder='点击输入加工费' name="other_price" value="{{record.other_price}}"/>
       </view>
     </view>
-    <button size='mini' id='change' type='primary' form-type='submit'>修改</button>  
-    <button size='mini' id='delete' type='warn' bindtap='deleteRecord'>删除</button>
+    <button size='mini' id='change' type='primary' form-type='submit'>添加</button>  
   </form>
 
 </view>

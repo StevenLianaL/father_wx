@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    domain:"https://father.qinglanjun.com"
   }
 })

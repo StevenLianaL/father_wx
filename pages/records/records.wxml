@@ -1,7 +1,36 @@
 <view class='container'>
+  <view class='section'>
+    <button type='primary' id='add' bindtap='addRecord'>添加纪录</button>
+  </view>
+  <view class='section'>
+    <text>  收费：{{all_prices}}   </text>
+    <text>  加工费：{{other_prices}}   </text>
+    <text>  利润：{{profit}}</text>
+  </view>
   <view class='table'>
+    <view>
+      <button type='primary' class='select' size='mini' bindtap='showSelect'>检索</button>
+    </view>
+    <view wx:if="{{isShowSelect}}" class='choices'>
+      <form>
+        <input placeholder='输入患者姓名的一部分' bindinput='setPatient'></input>
+        <picker mode="date" start="2015-01-01" end="2025-12-31"
+          name="date" value="{select.date}}" bindchange="setSelectDate">
+          选择时间：{{select.date}}
+        </picker>
+        <radio-group class='radio-group' bindchange="setLevel">
+        时间级别：
+          <label class='radio' wx:for='{{levels}}' wx:key="index">
+            <radio value='{{item.value}}' name="level">{{item.show}}</radio>
+          </label>
+        </radio-group>
+      </form>
+    </view>
     <view class='tr'>
       <view class='th' wx:for="{{titles}}" wx:key="index">{{item}}</view>
+    </view>
+    <view wx:if="{{records.length===0}}">
+      <text class='no'>无查询结果</text>
     </view>
     <view class='tr content' wx:for="{{records}}"
           wx:key="id" bindtap='goDetail' data-rid="{{item.id}}">
