@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hasUserDetail: true,
     records: [],
     titles: ["日期", "姓名", "电话", "牙类", "牙位", "收费", "加工费"],
     domain: getApp().globalData.domain,
@@ -39,6 +40,30 @@ Page({
   onLoad: function(options) {
     let that = this
     // user=getApp().globalData.userInfo.NickName
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              that.setData({
+                hasUserDetail: true
+              })
+              // 可以将 res 发送给后台解码出 unionId
+              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+              if (this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(res)
+              }
+            }
+          })
+        } else {
+          this.setData({
+            hasUserDetail: false
+          })
+        }
+      }
+    })
     wx.request({
       url: this.data.domain + '/records/',
       success: function(res) {
@@ -146,44 +171,85 @@ Page({
       wx.request({
         url: that.data.domain + '/records/' + query,
         success: function(res) {
-          if (res.data.records.length === 0) {
-            console.log()
-          } else {
-            that.setData({
-              records: res.data.records
-            })
-            that.setData({
-              all_prices: res.data.all_prices
-            })
-            that.setData({
-              other_prices: res.data.other_prices
-            })
-            that.setData({
-              profit: res.data.profit
-            })
-          }
 
+          that.setData({
+            records: res.data.records,
+            select: {
+              date: util.formatDate(new Date()),
+              level: '',
+              patient: '',
+              tempDate: ''
+            },
+            all_prices: res.data.all_prices,
+            other_prices: res.data.other_prices,
+            profit: res.data.profit
+          })
         }
+
       })
 
     }
     this.setData({
-      select: {
-        date: '',
-        level: '',
-        patient: '',
-        tempDate: ''
-      },
       isShowSelect: !isShow
     })
   },
   setPatient: function(param) {
-    this.data.select.patient = param.detail.value
+    this.setData({
+      select: {
+        date: this.data.select.date,
+        level: this.data.select.level,
+        patient: param.detail.value,
+        tempDate: this.data.select.tempDate
+      }
+    })
   },
   setLevel: function(param) {
-    this.data.select.level = param.detail.value
+    this.setData({
+      select: {
+        date: this.data.select.date,
+        level: param.detail.value,
+        patient: this.data.select.patient,
+        tempDate: this.data.select.tempDate
+      }
+    })
   },
   setSelectDate: function(param) {
-    this.data.select.date = param.detail.value
+    this.setData({
+      select: {
+        date: param.detail.value,
+        level: this.data.select.level,
+        patient: this.data.select.patient,
+        tempDate: this.data.select.tempDate
+      }
+    })
+  },
+  getUserInfo: function(e) {
+    const that = this
+    const app = getApp()
+    app.globalData.userInfo = e.detail.userInfo
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              that.setData({
+                hasUserDetail: true
+              })
+              // 可以将 res 发送给后台解码出 unionId
+              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+              if (this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(res)
+              }
+            }
+          })
+        } else {
+          this.setData({
+            hasUserDetail: false
+          })
+        }
+      }
+    })
   }
 })

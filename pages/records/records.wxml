@@ -1,4 +1,9 @@
 <view class='container'>
+  <view wx:if="{{!hasUserDetail}}">
+    <button  type='primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo" size='mini'> 授权基本信息 </button>
+  </view>
+  <text wx:if="{{!hasUserDetail}}">请授权基本信息，才能继续操作，此操作仅需进行一次。</text>
+
   <view class='section'>
     <button type='primary' id='add' bindtap='addRecord'>添加纪录</button>
   </view>
@@ -14,12 +19,11 @@
     <view wx:if="{{isShowSelect}}" class='choices'>
       <form>
         <input placeholder='输入患者姓名的一部分' bindinput='setPatient'></input>
-        <picker mode="date" start="2015-01-01" end="2025-12-31"
-          name="date" value="{select.date}}" bindchange="setSelectDate">
+        <picker mode="date" start="2015-01-01" end="2025-12-31" name="date" value="{select.date}}" bindchange="setSelectDate">
           选择时间：{{select.date}}
         </picker>
         <radio-group class='radio-group' bindchange="setLevel">
-        时间级别：
+          时间级别：
           <label class='radio' wx:for='{{levels}}' wx:key="index">
             <radio value='{{item.value}}' name="level">{{item.show}}</radio>
           </label>
@@ -32,8 +36,7 @@
     <view wx:if="{{records.length===0}}">
       <text class='no'>无查询结果</text>
     </view>
-    <view class='tr content' wx:for="{{records}}"
-          wx:key="id" bindtap='goDetail' data-rid="{{item.id}}">
+    <view class='tr content' wx:for="{{records}}" wx:key="id" bindtap='goDetail' data-rid="{{item.id}}">
       <view class='td'>{{item.work_time}}</view>
       <view class='td'>{{item.patient}}</view>
       <view class='td'>{{item.phone}}</view>

@@ -7,6 +7,7 @@
         start="2018-01-01" 
         end="2025-12-31"
         name='work_time'
+        bindchange="setDate"
         value="{{record.work_time}}">{{record.work_time}}
       </picker>
       <view class="input0">

@@ -83,7 +83,6 @@ Page({
       success: function (res) {
         if(res.statusCode===400){
           const error=res.data.error
-          console.log(error)
           if(error==='data_untotal'){
             wx.showModal({
               title: '错误',
@@ -92,7 +91,7 @@ Page({
               confirmText: '知道了'
             })
           }
-          else if(error=='no_user'){
+          else if(error==='no_user'){
             wx.showModal({
               title: '错误',
               content: '查无此人，请联系开发者要求账号。',
@@ -108,5 +107,17 @@ Page({
         }
       },
     })
+  },
+  setDate:function(param){
+    this.setData({
+      record: {
+        work_time: param.detail.value,
+        patient: this.data.record.patient,
+        phone: this.data.record.phone,
+        tooth: this.data.record.tooth,
+        position: this.data.record.position,
+        price: this.data.record.price,
+        other_price: this.data.record.other_price
+      }})
   }
 })

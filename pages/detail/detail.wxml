@@ -2,7 +2,7 @@
   <form bindsubmit='updateRecord'>
     <view class='section'>
       <label for='work_time'>治疗时间：</label>
-      <picker id='work_time' mode="date" start="2018-01-01" end="2025-12-31" name='work_time' value="{{record.work_time}}">{{record.work_time}}
+      <picker id='work_time' mode="date" bindchange='setDate' start="2018-01-01" end="2025-12-31" name='work_time' value="{{record.work_time}}">{{record.work_time}}
       </picker>
       <view class="input0">
         <label for='patient'>患者姓名：</label>
@@ -29,7 +29,7 @@
         <input type='digit' id='other_price' placeholder='点击输入加工费' name="other_price" value="{{record.other_price}}" />
       </view>
     </view>
-    <view class='buttons container' >
+    <view class='buttons container'>
       <button size='mini' type='primary' bindtap='callPhone'>电话</button>
       <button size='mini' id='change' type='primary' form-type='submit'>修改</button>
       <button size='mini' id='delete' type='warn' bindtap='deleteRecord'>删除</button>

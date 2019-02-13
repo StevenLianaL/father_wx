@@ -175,19 +175,32 @@ Page({
       }
     })
   },
-  callPhone:function(param){
-    const phone=this.data.record.phone
+  callPhone: function(param) {
+    const phone = this.data.record.phone
     wx.makePhoneCall({
       phoneNumber: phone,
-      fail:function(res){
+      fail: function(res) {
         wx.showModal({
           title: '失败',
           content: '请检查号码或授权',
-          showCancel:false,
-          confirmText:'知道了',
+          showCancel: false,
+          confirmText: '知道了',
         })
       }
 
+    })
+  },
+  setDate: function(param) {
+    this.setData({
+      record: {
+        work_time: param.detail.value,
+        patient: this.data.record.patient,
+        phone: this.data.record.phone,
+        tooth: this.data.record.tooth,
+        position: this.data.record.position,
+        price: this.data.record.price,
+        other_price: this.data.record.other_price
+      }
     })
   }
 
