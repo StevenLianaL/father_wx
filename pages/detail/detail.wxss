@@ -8,13 +8,6 @@ picker {
   border: 1rpx ridge;
 }
 
-/* #change{
-  float: left;
-}
-#delete{
-  float: right;
-} */
-
 .buttons {
   flex-direction: row;
   justify-content: space-between;
@@ -25,4 +18,21 @@ picker {
 label {
   width: 100%;
   background: #2cae1e;
+}
+.form0{
+  width: 86%;
+  font-size: 16px;
+}
+.input0{
+  display: flex;
+  margin-bottom: 20rpx;
+}
+label{
+  width: 190rpx;
+  font-size: 16px;
+  background: #fff;
+}
+input{
+  text-align: left;
+  font-size: 16px;
 }

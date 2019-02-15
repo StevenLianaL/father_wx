@@ -1,1 +1,17 @@
 /* pages/add/add.wxss */
+.form0{
+  width: 86%;
+  font-size: 16px;
+}
+.input0{
+  display: flex;
+  margin-bottom: 20rpx;
+}
+label{
+  width: 190rpx;
+  font-size: 16px;
+}
+#change{
+  background: #99ce7e !important;
+  margin-top: 30rpx;
+}

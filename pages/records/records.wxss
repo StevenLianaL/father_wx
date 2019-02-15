@@ -1,40 +1,105 @@
 @import "../../utils/weui.wxss";
+
 /* table */
-view{
+
+view {
   font-size: 24rpx;
 }
-.table{
+
+.scrollClass {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+  height: 100%;
+  background-color: white;
+}
+
+.table {
   width: 98%;
 }
-.tr{
-  width: 100%;
-  text-align: center;
-  border: 1rpx ridge;
-  display: flex;
-  justify-content: space-between;
-}
-.th,.td {
-  padding: 10rpx;
-  text-align: center;
-  width: 100%;
 
-}
-.th{
-  margin: 1.5rpx;
-  font-size: 28rpx;
-  background: #2CAE1E;
-}
-.td{
-  margin: 10rpx 2rpx;
-  background: #00E278;
-}
-.select{
+.select {
   float: right;
+  background: #99ce7e !important;
+  font-size: 14px !important;
+  color: #333 !important;
 }
-.choices{
-  float: left;
-}
-.no{
+
+.no {
   font-size: 40rpx;
   text-align: center;
+}
+
+.add {
+  background-color: #d9ebb1 !important;
+  color: #333 !important;
+  font-size: 16px;
+}
+
+.prices {
+  margin: 40rpx;
+  font-size: 30rpx;
+}
+
+.clearfix {
+  display: block;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: "";
+  clear: both;
+  height: 0;
+}
+
+.table2 {
+  /* display: table; *//* width: 100%; *//* border-collapse 属性设置表格的边框是否被合并为一个单一的边框，解决相邻单元格边框未合并导致有些边框变粗的视觉效果 */
+  border-collapse: collapse;
+  overflow-x: visible;
+  margin-top: 10rpx;
+}
+
+.table-tr {
+  display: table-row;
+  width: 100%;
+  height: 200rpx;
+}
+
+.table-th {
+  display: table-cell;
+  font-weight: bold;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #ccc;
+}
+
+.table-td {
+  display: table-cell;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.from_1 {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.name {
+  border: 1px solid #ddd;
+  padding-left: 14rpx;
+  margin-bottom: 10rpx;
+  color: #333;
+}
+.pic{
+  margin-bottom: 10rpx;
+}
+.radio radio{
+  width: 120rpx;
+}
+.radio-group{
+  display: flex;
 }

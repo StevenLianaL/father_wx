@@ -68,15 +68,9 @@ Page({
       url: this.data.domain + '/records/',
       success: function(res) {
         that.setData({
-          records: res.data.records
-        })
-        that.setData({
-          all_prices: res.data.all_prices
-        })
-        that.setData({
-          other_prices: res.data.other_prices
-        })
-        that.setData({
+          records: res.data.records,
+          all_prices: res.data.all_prices,
+          other_prices: res.data.other_prices,
           profit: res.data.profit
         })
       }

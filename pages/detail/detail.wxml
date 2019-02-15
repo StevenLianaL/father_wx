@@ -1,9 +1,11 @@
 <view class='container'>
-  <form bindsubmit='updateRecord'>
+  <form bindsubmit='updateRecord' class='form0'>
     <view class='section'>
-      <label for='work_time'>治疗时间：</label>
-      <picker id='work_time' mode="date" bindchange='setDate' start="2018-01-01" end="2025-12-31" name='work_time' value="{{record.work_time}}">{{record.work_time}}
-      </picker>
+      <view class='input0'>
+        <label for='work_time'>治疗时间：</label>
+        <picker id='work_time' mode="date" bindchange='setDate' start="2018-01-01" end="2025-12-31" name='work_time' value="{{record.work_time}}">{{record.work_time}}
+        </picker>
+      </view>
       <view class="input0">
         <label for='patient'>患者姓名：</label>
         <input type='text' id="patient" placeholder='点击输入患者姓名' name='patient' value="{{record.patient}}" />
@@ -13,7 +15,7 @@
         <input type='number' id='phone' placeholder='点击输入联系方式' name="phone" value="{{record.phone}}" />
       </view>
       <view class="input0">
-        <label for="tooth">牙（类型）：</label>
+        <label for="tooth">牙(类型)：</label>
         <input type='text' id='tooth' placeholder='点击输入牙（类型）' name="tooth" value="{{record.tooth}}" />
       </view>
       <view class="input0">
