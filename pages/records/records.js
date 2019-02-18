@@ -160,7 +160,7 @@ Page({
       } else if (date !== '') {
         var query = '?date=' + date + '&username=' + username
       } else {
-        var query = ''
+        var query = '?username=' + username
       }
       wx.request({
         url: that.data.domain + '/records/' + query,

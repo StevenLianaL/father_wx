@@ -35,7 +35,7 @@
         <view class='table-th' wx:for="{{titles}}" wx:key="index">{{item}}</view>
       </view>
       <view wx:if="{{records.length===0}}">
-        <text class='no'>无查询结果</text>
+        <text class='no'>无查询结果，请双击检索按钮。</text>
       </view>
       <view class='table-tr content' wx:for="{{records}}" wx:key="id" bindtap='goDetail' data-rid="{{item.id}}">
         <view class='table-td'>{{item.work_time}}</view>
